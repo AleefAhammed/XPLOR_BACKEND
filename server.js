@@ -23,7 +23,15 @@ app.get('/', (req, res) => {
     res.send('Hello Programers ! This is my first individual project - XPLOR');
 })
 
-const allowedOrigins = ["http://localhost:5173"];
+let allowedOrigins = [];
+if (process.env.ENVIRONMENT === 'Production') {
+    allowedOrigins = [`http://localhost:5173`];
+} else if (process.env.ENVIRONMENT === 'deployment') {
+    allowedOrigins = [`https://xplor-six.vercel.app`];
+}
+
+
+
 app.use(cors({
     credentials: true,
     origin: allowedOrigins

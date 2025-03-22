@@ -43,6 +43,7 @@ const verifyPayment = async (req, res) => {
 
         if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
             return res.status(400).json({
+
                 message: "Missing required parameters!",
                 success: false
             });
@@ -56,7 +57,11 @@ const verifyPayment = async (req, res) => {
             .digest("hex");
 
         if (razorpay_signature === expectedSign) {
-            return res.status(200).json({ message: "Payment verified successfully", success: true });
+            return res.status(200).json({
+                message: "Payment verified successfully",
+                success: true,
+                data: req.body
+            });
         } else {
             return res.status(400).json({ message: "Invalid signature sent!" });
         }
