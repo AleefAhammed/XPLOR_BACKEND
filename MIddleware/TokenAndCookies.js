@@ -22,9 +22,9 @@ const createToken = async (data) => {
 const cookieSafetyMeasures = {
 
     httpOnly: true,
-    secure: process.env.ENVIRONMENT === "Production" ? true : false,
+    secure: process.env.ENVIRONMENT === "Development" ? false : true,
     maxAge: 1 * 60 * 60 * 1000,
-    sameSite: process.env.ENVIRONMENT === "Production" ? true : false
+    sameSite: process.env.ENVIRONMENT === "Development" ? 'Lax' : 'None'
 }
 
 module.exports = {
