@@ -15,10 +15,20 @@ configDotenv();
 app.use(cookieParser());
 ConnectDatabe();
 
-app.use(cors({
-    credentials: true,
-    origin: process.env.CLIENT_URL
-}))
+
+if (process.env.ENVIRONMENT === "Development") {
+
+    app.use(cors({
+        credentials: true,
+        origin: process.env.DEVELOPMENT_CLIENT_URL
+    }))
+} else if (process.env.ENVIRONMENT === "Development") {
+
+    app.use(cors({
+        credentials: true,
+        origin: process.env.PRODUCTION_CLIENT_URL
+    }))
+}
 
 // app.use(cors())
 
