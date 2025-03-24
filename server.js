@@ -22,7 +22,7 @@ if (process.env.ENVIRONMENT === "Development") {
         credentials: true,
         origin: process.env.DEVELOPMENT_CLIENT_URL
     }))
-} else if (process.env.ENVIRONMENT === "Development") {
+} else if (process.env.ENVIRONMENT === "Production") {
 
     app.use(cors({
         credentials: true,
